@@ -639,23 +639,37 @@ body {
 }
 
 /* added video icon and modal styles */
-.video-icon {
+/* replaced .video-icon with .video-button styles for proper button appearance */
+.video-button {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 48px;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 107, 107, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
   opacity: 0;
   transition: all 0.3s ease;
   z-index: 10;
-  pointer-events: none;
-  color: white; /* Added for visibility */
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Added for contrast */
+  text-decoration: none;
+  border: 2px solid white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-.dish-card:hover .video-icon {
+.dish-card:hover .video-button {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1.1);
+  transform: translate(-50%, -50%) scale(1.15);
+  background: rgba(255, 107, 107, 1);
+}
+
+.video-button:hover {
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5);
 }
 
 .clickable-image {

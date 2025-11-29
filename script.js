@@ -204,74 +204,39 @@ document.addEventListener("keydown", (e) => {
 const videoData = {
   jollof: {
     title: "How to Cook Jollof Rice",
-    url: "https://www.youtube.com/embed/yKt9K-BwVLQ",
+    url: "https://youtu.be/zuAP_6MEy2E",
   },
   pepper: {
     title: "How to Cook Pepper Soup",
-    url: "https://www.youtube.com/embed/GJhqEz6AeF8",
+    url: "https://youtu.be/CBBj6ibfgSk",
   },
   suya: {
     title: "How to Make Suya",
-    url: "https://www.youtube.com/embed/K6sJXFj8FXw",
+    url: "https://youtu.be/rXCH7dJ_chY",
   },
   egusi: {
     title: "How to Cook Egusi Soup",
-    url: "https://www.youtube.com/embed/vNfxHwqNI6I",
+    url: "https://youtu.be/XeZJlxAsP18",
   },
   akara: {
     title: "How to Make Akara",
-    url: "https://www.youtube.com/embed/e7aYBw4EpOg",
+    url: "https://youtu.be/r2hVi_f4M6g",
   },
   yam: {
     title: "How to Pound Yam",
-    url: "https://www.youtube.com/embed/oH3zUg7XvKI",
+    url: "https://youtu.be/iyMWgnUKC94",
   },
 }
 
-// Video modal functionality
-const videoModal = document.getElementById("videoModal")
-const videoFrame = document.getElementById("videoFrame")
-const videoTitle = document.getElementById("videoTitle")
-const closeVideoBtn = document.querySelector(".close-video-btn")
-
-// Open video on image click
-document.querySelectorAll(".clickable-image").forEach((img) => {
-  img.addEventListener("click", function () {
-    const dishCard = this.closest(".dish-card")
-    const dishType = dishCard.getAttribute("data-dish")
-
-    if (videoData[dishType]) {
-      const video = videoData[dishType]
-      videoTitle.textContent = video.title
-      videoFrame.src = video.url
-      videoModal.classList.add("active")
-      document.body.style.overflow = "hidden"
-    }
-  })
-})
-
-// Close modal
-closeVideoBtn.addEventListener("click", closeVideoModal)
-
-function closeVideoModal() {
-  videoModal.classList.remove("active")
-  videoFrame.src = ""
-  document.body.style.overflow = "auto"
+function getYouTubeEmbedUrl(url) {
+  let videoId = ""
+  if (url.includes("youtu.be/")) {
+    videoId = url.split("youtu.be/")[1].split("?")[0]
+  } else if (url.includes("youtube.com/watch?v=")) {
+    videoId = url.split("v=")[1].split("&")[0]
+  }
+  return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1` : url
 }
-
-// Close modal when clicking outside the modal content
-videoModal.addEventListener("click", (e) => {
-  if (e.target === videoModal) {
-    closeVideoModal()
-  }
-})
-
-// Close modal with Escape key
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && videoModal.classList.contains("active")) {
-    closeVideoModal()
-  }
-})
 
 // COMPARISON TABLE FUNCTIONALITY
 // Add filter functionality
