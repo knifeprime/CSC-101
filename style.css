@@ -1274,3 +1274,319 @@ body {
     gap: 10px;
   }
 }
+
+/* Added nutrition table styles with animations and gradients */
+
+.nutrition-table-container {
+  margin-top: 80px;
+  padding: 40px 0;
+  animation: fadeInUp 0.8s ease-out;
+  opacity: 1;
+}
+
+.table-title {
+  text-align: center;
+  font-size: 32px;
+  color: var(--accent-color);
+  margin-bottom: 40px;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+}
+
+.table-wrapper {
+  background: rgba(255, 107, 53, 0.05);
+  border: 2px solid rgba(255, 107, 53, 0.2);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(255, 107, 53, 0.15);
+  backdrop-filter: blur(10px);
+  animation: slideInUp 0.8s ease-out 0.2s both;
+  opacity: 1;
+  visibility: visible;
+}
+
+.nutrition-table {
+  width: 100%;
+  border-collapse: collapse;
+  /* Changed text color to white for better visibility */
+  color: #ffffff;
+}
+
+.nutrition-table thead {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(247, 184, 1, 0.15));
+  border-bottom: 2px solid rgba(255, 107, 53, 0.4);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nutrition-table th {
+  padding: 20px 16px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  /* Changed header text to white */
+  color: #ffffff;
+}
+
+.dish-name-header {
+  /* Changed to white */
+  color: #ffffff;
+}
+
+.numeric-header {
+  text-align: center;
+  /* Changed to white */
+  color: #ffffff;
+}
+
+.ingredients-header {
+  /* Changed to white */
+  color: #ffffff;
+}
+
+.table-row {
+  border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+  transition: all 0.3s ease;
+  animation: slideInFromLeft 0.6s ease-out forwards;
+  animation-delay: var(--row-delay);
+  opacity: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.table-row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s ease;
+}
+
+.table-row:hover::before {
+  transform: scaleY(1);
+}
+
+.table-row:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 107, 53, 0.1) 0%,
+    rgba(247, 184, 1, 0.05) 50%,
+    rgba(255, 107, 53, 0.05) 100%
+  );
+  transform: translateX(4px);
+  box-shadow: -4px 0 12px rgba(255, 107, 53, 0.2);
+}
+
+.nutrition-table td {
+  padding: 18px 16px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  /* Changed text color to white */
+  color: #ffffff;
+}
+
+.dish-name {
+  font-weight: 600;
+  /* Changed to white */
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dish-badge {
+  font-size: 20px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.table-row:hover .dish-badge {
+  transform: scale(1.2) rotate(-5deg);
+}
+
+.calories-cell {
+  text-align: center;
+  font-weight: 700;
+  /* Changed to white */
+  color: #ffffff;
+  position: relative;
+}
+
+.calories-cell::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, rgba(247, 184, 1, 0.1), rgba(255, 107, 53, 0.1));
+  border-radius: 6px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.table-row:hover .calories-cell::before {
+  opacity: 1;
+}
+
+.protein-cell {
+  text-align: center;
+  font-weight: 700;
+  /* Changed to white */
+  color: #ffffff;
+  position: relative;
+  padding: 18px 16px;
+}
+
+.protein-cell::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, rgba(91, 181, 255, 0.1), rgba(0, 78, 137, 0.1));
+  border-radius: 6px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.table-row:hover .protein-cell::after {
+  opacity: 1;
+}
+
+.ingredients-cell {
+  /* Changed text color to white */
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Responsive table styles */
+@media (max-width: 1024px) {
+  .nutrition-table td,
+  .nutrition-table th {
+    padding: 14px 10px;
+    font-size: 13px;
+  }
+
+  .dish-name {
+    font-size: 13px;
+  }
+
+  .ingredients-cell {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nutrition-table-container {
+    margin-top: 60px;
+    padding: 20px 0;
+  }
+
+  .table-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  .table-wrapper {
+    border-radius: 12px;
+    overflow-x: auto;
+  }
+
+  .nutrition-table td,
+  .nutrition-table th {
+    padding: 12px 8px;
+    font-size: 12px;
+  }
+
+  .nutrition-table th {
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+
+  .dish-badge {
+    font-size: 18px;
+  }
+
+  .dish-name {
+    font-size: 12px;
+    gap: 6px;
+  }
+
+  .ingredients-cell {
+    font-size: 11px;
+    max-width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nutrition-table-container {
+    margin-top: 50px;
+    padding: 15px 0;
+  }
+
+  .table-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nutrition-table {
+    min-width: 600px;
+  }
+
+  .nutrition-table td,
+  .nutrition-table th {
+    padding: 10px 6px;
+    font-size: 11px;
+  }
+
+  .nutrition-table th {
+    font-size: 10px;
+    letter-spacing: 0px;
+  }
+
+  .dish-badge {
+    font-size: 16px;
+  }
+
+  .ingredients-cell {
+    font-size: 10px;
+    max-width: 150px;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
